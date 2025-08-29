@@ -80,14 +80,13 @@ def generate_query(state: OverallState, config: RunnableConfig) -> QueryGenerati
     #     api_key=os.getenv("GEMINI_API_KEY"),
     # )
     llm = ChatOpenAI(
-        model_name="deepseek_v3",
+        model_name="Qwen/Qwen3-Coder-480B-A35B-Instruct",
         temperature=1.0,
         max_retries=2,
-        openai_api_key="85a9d98d-b1c1-46f0-81f3-368adc3371db",
-        openai_api_base="https://aimodels.sunnyoptical.cn/deepseekv3_0324/v1",
+        openai_api_key="ms-5781e927-ef12-4256-9532-103108ecaa10",
+        openai_api_base="https://api-inference.modelscope.cn/v1",
     )
     structured_llm = llm.with_structured_output(SearchQueryList)
-
     # Format the prompt
     current_date = get_current_date()
     formatted_prompt = query_writer_instructions.format(
@@ -189,11 +188,11 @@ def reflection(state: OverallState, config: RunnableConfig) -> ReflectionState:
     #     api_key=os.getenv("GEMINI_API_KEY"),
     # )
     llm = ChatOpenAI(
-        model_name="deepseek_v3",
+        model_name="Qwen/Qwen3-Coder-480B-A35B-Instruct",
         temperature=1.0,
         max_retries=2,
-        openai_api_key="85a9d98d-b1c1-46f0-81f3-368adc3371db",
-        openai_api_base="https://aimodels.sunnyoptical.cn/deepseekv3_0324/v1",
+        openai_api_key="ms-5781e927-ef12-4256-9532-103108ecaa10",
+        openai_api_base="https://api-inference.modelscope.cn/v1",
     )
     result = llm.with_structured_output(Reflection).invoke(formatted_prompt)
 
@@ -275,11 +274,11 @@ def finalize_answer(state: OverallState, config: RunnableConfig):
     #     api_key=os.getenv("GEMINI_API_KEY"),
     # )
     llm = ChatOpenAI(
-        model_name="deepseek_v3",
+        model_name="Qwen/Qwen3-Coder-480B-A35B-Instruct",
         temperature=1.0,
         max_retries=2,
-        openai_api_key="85a9d98d-b1c1-46f0-81f3-368adc3371db",
-        openai_api_base="https://aimodels.sunnyoptical.cn/deepseekv3_0324/v1",
+        openai_api_key="ms-5781e927-ef12-4256-9532-103108ecaa10",
+        openai_api_base="https://api-inference.modelscope.cn/v1",
     )
     result = llm.invoke(formatted_prompt)
 

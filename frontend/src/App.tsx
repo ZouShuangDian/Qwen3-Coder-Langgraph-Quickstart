@@ -150,7 +150,7 @@ export default function App() {
   }, [thread]);
 
   return (
-    <div className="flex h-screen bg-neutral-800 text-neutral-100 font-sans antialiased">
+    <div className="flex h-screen bg-white text-gray-900 font-sans antialiased">
       <main className="h-full w-full max-w-4xl mx-auto">
           {thread.messages.length === 0 ? (
             <WelcomeScreen
@@ -161,8 +161,8 @@ export default function App() {
           ) : error ? (
             <div className="flex flex-col items-center justify-center h-full">
               <div className="flex flex-col items-center justify-center gap-4">
-                <h1 className="text-2xl text-red-400 font-bold">Error</h1>
-                <p className="text-red-400">{JSON.stringify(error)}</p>
+                <h1 className="text-2xl text-red-600 font-bold">Error</h1>
+                <p className="text-red-600">{JSON.stringify(error)}</p>
 
                 <Button
                   variant="destructive"
