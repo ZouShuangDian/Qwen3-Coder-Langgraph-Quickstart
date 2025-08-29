@@ -147,7 +147,7 @@ const HumanMessageBubble: React.FC<HumanMessageBubbleProps> = ({
 }) => {
   return (
     <div
-      className={`text-white rounded-3xl break-words min-h-7 bg-blue-600 max-w-[100%] sm:max-w-[90%] px-4 pt-3 rounded-br-lg`}
+      className={`text-white rounded-2xl break-words min-h-7 bg-blue-600 max-w-[100%] sm:max-w-[90%] px-4 py-3 rounded-br-lg shadow-sm`}
     >
       <ReactMarkdown components={mdComponents}>
         {typeof message.content === "string"
@@ -189,7 +189,7 @@ const AiMessageBubble: React.FC<AiMessageBubbleProps> = ({
   return (
     <div className={`relative break-words flex flex-col`}>
       {activityForThisBubble && activityForThisBubble.length > 0 && (
-        <div className="mb-3 border-b border-gray-300 pb-3 text-xs">
+        <div className="mb-3 border-b border-gray-200 pb-3 text-xs">
           <ActivityTimeline
             processedEvents={activityForThisBubble}
             isLoading={isLiveActivityForThisBubble}
@@ -203,7 +203,7 @@ const AiMessageBubble: React.FC<AiMessageBubbleProps> = ({
       </ReactMarkdown>
       <Button
         variant="default"
-        className={`cursor-pointer bg-gray-100 border border-gray-200 text-gray-700 hover:bg-gray-200 self-end ${
+        className={`cursor-pointer bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 self-end mt-3 rounded-lg px-3 py-1.5 transition-all duration-200 flex items-center gap-2 ${
           message.content.length > 0 ? "visible" : "hidden"
         }`}
         onClick={() =>
@@ -215,8 +215,17 @@ const AiMessageBubble: React.FC<AiMessageBubbleProps> = ({
           )
         }
       >
-        {copiedMessageId === message.id ? "Copied" : "Copy"}
-        {copiedMessageId === message.id ? <CopyCheck /> : <Copy />}
+        {copiedMessageId === message.id ? (
+          <>
+            <CopyCheck className="h-4 w-4" />
+            <span className="text-sm">Copied</span>
+          </>
+        ) : (
+          <>
+            <Copy className="h-4 w-4" />
+            <span className="text-sm">Copy</span>
+          </>
+        )}
       </Button>
     </div>
   );

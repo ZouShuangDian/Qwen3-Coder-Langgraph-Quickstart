@@ -48,29 +48,29 @@ export const InputForm: React.FC<InputFormProps> = ({
   return (
     <form
       onSubmit={handleInternalSubmit}
-      className={`flex flex-col gap-2 p-3 pb-4`}
+      className={`flex flex-col gap-3 p-4 bg-white border-t border-gray-200`}
     >
       <div
-        className={`flex flex-row items-center justify-between text-gray-900 rounded-3xl rounded-bl-sm ${
-          hasHistory ? "rounded-br-sm" : ""
-        } break-words min-h-7 bg-gray-100 border border-gray-200 px-4 pt-3 `}
+        className={`flex flex-row items-end gap-2 rounded-xl ${
+          hasHistory ? "rounded-br-xl" : ""
+        } break-words min-h-12 bg-gray-50 border border-gray-300 px-3 py-2 transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500`}
       >
         <Textarea
           value={internalInputValue}
           onChange={(e) => setInternalInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Who won the Euro 2024 and scored the most goals?"
+          placeholder="Ask anything..."
           className={`w-full text-gray-900 placeholder-gray-500 resize-none border-0 focus:outline-none focus:ring-0 outline-none focus-visible:ring-0 shadow-none bg-transparent
-                        md:text-base  min-h-[56px] max-h-[200px]`}
+                        md:text-base min-h-[20px] max-h-[200px]`}
           rows={1}
         />
-        <div className="-mt-3">
+        <div className="pb-1">
           {isLoading ? (
             <Button
               type="button"
               variant="ghost"
               size="icon"
-              className="text-red-600 hover:text-red-500 hover:bg-red-50 p-2 cursor-pointer rounded-full transition-all duration-200"
+              className="text-red-500 hover:text-red-600 hover:bg-red-100 p-2 rounded-full transition-all duration-200"
               onClick={onCancel}
             >
               <StopCircle className="h-5 w-5" />
@@ -79,14 +79,14 @@ export const InputForm: React.FC<InputFormProps> = ({
             <Button
               type="submit"
               variant="ghost"
+              size="icon"
               className={`${
                 isSubmitDisabled
                   ? "text-gray-400"
-                  : "text-blue-600 hover:text-blue-500 hover:bg-blue-50"
-              } p-2 cursor-pointer rounded-full transition-all duration-200 text-base`}
+                  : "text-blue-600 hover:text-blue-700 hover:bg-blue-100"
+              } p-2 rounded-full transition-all duration-200`}
               disabled={isSubmitDisabled}
             >
-              Search
               <Send className="h-5 w-5" />
             </Button>
           )}
@@ -94,50 +94,46 @@ export const InputForm: React.FC<InputFormProps> = ({
       </div>
       <div className="flex items-center justify-between">
         <div className="flex flex-row gap-2">
-          <div className="flex flex-row gap-2 bg-gray-100 border border-gray-200 text-gray-700 focus:ring-blue-500 rounded-xl rounded-t-sm pl-2  max-w-[100%] sm:max-w-[90%]">
-            <div className="flex flex-row items-center text-sm">
-              <Brain className="h-4 w-4 mr-2" />
-              Effort
-            </div>
+          <div className="flex flex-row items-center gap-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 rounded-lg px-3 py-1.5 transition-colors duration-200">
+            <Brain className="h-4 w-4" />
+            <span className="text-sm font-medium">Effort</span>
             <Select value={effort} onValueChange={setEffort}>
-              <SelectTrigger className="w-[120px] bg-transparent border-none cursor-pointer">
+              <SelectTrigger className="w-[90px] bg-transparent border-none cursor-pointer py-0 h-6 pl-2">
                 <SelectValue placeholder="Effort" />
               </SelectTrigger>
-              <SelectContent className="bg-white border border-gray-200 text-gray-700 cursor-pointer">
+              <SelectContent className="bg-white border border-gray-300 text-gray-700 rounded-lg shadow-lg">
                 <SelectItem
                   value="low"
-                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
+                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer py-2"
                 >
                   Low
                 </SelectItem>
                 <SelectItem
                   value="medium"
-                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
+                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer py-2"
                 >
                   Medium
                 </SelectItem>
                 <SelectItem
                   value="high"
-                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
+                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer py-2"
                 >
                   High
                 </SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <div className="flex flex-row gap-2 bg-gray-100 border border-gray-200 text-gray-700 focus:ring-blue-500 rounded-xl rounded-t-sm pl-2  max-w-[100%] sm:max-w-[90%]">
-            <div className="flex flex-row items-center text-sm ml-2">
-              <Cpu className="h-4 w-4 mr-2" />
-              Model
-            </div>
+          <div className="flex flex-row items-center gap-2 bg-gray-100 hover:bg-gray-200 border border-gray-300 text-gray-700 rounded-lg px-3 py-1.5 transition-colors duration-200">
+            <Cpu className="h-4 w-4" />
+            <span className="text-sm font-medium">Model</span>
             <Select value={model} onValueChange={setModel}>
-              <SelectTrigger className="w-[150px] bg-transparent border-none cursor-pointer">
+              <SelectTrigger className="w-[140px] bg-transparent border-none cursor-pointer py-0 h-6 pl-2">
                 <SelectValue placeholder="Model" />
               </SelectTrigger>
-              <SelectContent className="bg-white border border-gray-200 text-gray-700 cursor-pointer">
+              <SelectContent className="bg-white border border-gray-300 text-gray-700 rounded-lg shadow-lg">
                 <SelectItem
                   value="qwen-2.5"
-                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
+                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer py-2"
                 >
                   <div className="flex items-center">
                     <Zap className="h-4 w-4 mr-2 text-yellow-500" /> Qwen 2.5
@@ -145,7 +141,7 @@ export const InputForm: React.FC<InputFormProps> = ({
                 </SelectItem>
                 <SelectItem
                   value="Qwen3-235B-A22B"
-                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
+                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer py-2"
                 >
                   <div className="flex items-center">
                     <Zap className="h-4 w-4 mr-2 text-orange-500" /> Qwen3-235B-A22B
@@ -153,7 +149,7 @@ export const InputForm: React.FC<InputFormProps> = ({
                 </SelectItem>
                 <SelectItem
                   value="qwen-max"
-                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer"
+                  className="hover:bg-gray-100 focus:bg-gray-100 cursor-pointer py-2"
                 >
                   <div className="flex items-center">
                     <Cpu className="h-4 w-4 mr-2 text-purple-500" /> Qwen Max
@@ -165,12 +161,12 @@ export const InputForm: React.FC<InputFormProps> = ({
         </div>
         {hasHistory && (
           <Button
-            className="bg-gray-100 border border-gray-200 text-gray-700 hover:bg-gray-200 cursor-pointer rounded-xl rounded-t-sm pl-2 "
+            className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 hover:border-gray-400 rounded-lg px-3 py-1.5 transition-all duration-200 flex items-center gap-2"
             variant="default"
             onClick={() => window.location.reload()}
           >
             <SquarePen size={16} />
-            New Search
+            <span className="text-sm font-medium">New Search</span>
           </Button>
         )}
       </div>
