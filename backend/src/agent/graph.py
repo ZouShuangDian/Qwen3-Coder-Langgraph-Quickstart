@@ -82,9 +82,7 @@ def generate_query(state: OverallState, config: RunnableConfig) -> QueryGenerati
     llm = ChatOpenAI(
         model_name="Qwen/Qwen3-Coder-480B-A35B-Instruct",
         temperature=1.0,
-        max_retries=2,
-        openai_api_key="ms-5781e927-ef12-4256-9532-103108ecaa10",
-        openai_api_base="https://api-inference.modelscope.cn/v1",
+        max_retries=2
     )
     structured_llm = llm.with_structured_output(SearchQueryList)
     # Format the prompt
@@ -190,9 +188,7 @@ def reflection(state: OverallState, config: RunnableConfig) -> ReflectionState:
     llm = ChatOpenAI(
         model_name="Qwen/Qwen3-Coder-480B-A35B-Instruct",
         temperature=1.0,
-        max_retries=2,
-        openai_api_key="ms-5781e927-ef12-4256-9532-103108ecaa10",
-        openai_api_base="https://api-inference.modelscope.cn/v1",
+        max_retries=2
     )
     result = llm.with_structured_output(Reflection).invoke(formatted_prompt)
 
@@ -276,9 +272,7 @@ def finalize_answer(state: OverallState, config: RunnableConfig):
     llm = ChatOpenAI(
         model_name="Qwen/Qwen3-Coder-480B-A35B-Instruct",
         temperature=1.0,
-        max_retries=2,
-        openai_api_key="ms-5781e927-ef12-4256-9532-103108ecaa10",
-        openai_api_base="https://api-inference.modelscope.cn/v1",
+        max_retries=2
     )
     result = llm.invoke(formatted_prompt)
 
